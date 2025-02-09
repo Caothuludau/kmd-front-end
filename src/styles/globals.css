@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles (optional) */
+body {
+    @apply bg-white text-gray-900;
+}
+
+h1,
+h2,
+h3 {
+    @apply font-bold;
+}
