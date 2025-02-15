@@ -1,4 +1,6 @@
-export function Navbar() {
+
+import Link from 'next/link';
+export function Header() {
     return (
         <nav className="w-full py-4 bg-white shadow-md">
             <div className="max-w-6xl mx-auto flex justify-between items-center px-4">

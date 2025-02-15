@@ -2,12 +2,8 @@
 import React, { useState } from "react";
 import Card from "@/components/Card";
 import Button from "@/components/Button";
-
-const wines = [
-    { id: 1, title: "Red Wine", category: "Red", price: "$30", image: "https://via.placeholder.com/150" },
-    { id: 2, title: "White Wine", category: "White", price: "$25", image: "https://via.placeholder.com/150" },
-    { id: 3, title: "Rosé Wine", category: "Rosé", price: "$28", image: "https://via.placeholder.com/150" },
-];
+import Link from "next/link";
+import wines from "@/data/wines"; // Mock data
 
 export default function WinePage() {
     const [category, setCategory] = useState("All");
@@ -24,9 +20,9 @@ export default function WinePage() {
             {/* Filters */}
             <div className="flex space-x-4 mb-6">
                 <Button onClick={() => setCategory("All")}>All</Button>
-                <Button onClick={() => setCategory("Red")}>Red</Button>
-                <Button onClick={() => setCategory("White")}>White</Button>
-                <Button onClick={() => setCategory("Rosé")}>Rosé</Button>
+                <Button onClick={() => setCategory("Rượu Trắng")}>Rượu Trắng</Button>
+                <Button onClick={() => setCategory("Rượu đặc biệt")}>Rượu đặc biệt</Button>
+                <Button onClick={() => setCategory("Rượu mơ")}>Rượu mơ</Button>
             </div>
 
             {/* Sorting */}
@@ -45,9 +41,17 @@ export default function WinePage() {
             {/* Wine List */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredWines.map((wine) => (
-                    <Card key={wine.id} title={wine.title} description={wine.category} image={wine.image} price={wine.price} />
+                    <Card key={wine.id} title={wine.title} description={wine.category} image={wine.image} price={wine.price}>
+                        <Link href={`/wine/${wine.id}`}>
+                            <button className="bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700">
+                                View Details
+                            </button>
+                        </Link>
+                    </Card>
                 ))}
             </div>
         </div>
     );
+
+    
 }
