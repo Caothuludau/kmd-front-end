@@ -1,16 +1,46 @@
+// src/components/Header.tsx
+"use client";
 
-import Link from 'next/link';
-export function Header() {
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+const Header = () => {
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <nav className="w-full py-4 bg-white shadow-md">
-            <div className="max-w-6xl mx-auto flex justify-between items-center px-4">
-                <span className="text-xl font-semibold">Khu Mo Distillery</span>
-                <div className="space-x-4">
-                    <a href="/" className="text-gray-700 hover:text-black">Home</a>
-                    <a href="/wine" className="text-gray-700 hover:text-black">Wine</a>
-                    <a href="/about" className="text-gray-700 hover:text-black">About</a>
-                </div>
-            </div>
-        </nav>
+        <header
+            className={`fixed top-0 left-0 w-full flex flex-col items-center justify-center transition-all duration-500 z-50 ${isScrolled ? "bg-white py-2 shadow-md" : "bg-transparent py-6"
+                }`}
+        >
+            {/* Navigation Bar */}
+            <nav className="flex space-x-6 text-lg">
+                <Link href="/contact">+ Contact</Link>
+                <Link href="/">Home</Link>
+                <Link href="/wine-categories">Wine Categories</Link>
+                <Link href="/about">About Khu Mo Wine</Link>
+            </nav>
+
+            {/* Logo Animation */}
+            <motion.div
+                initial={{ scale: 2 }}
+                animate={{ scale: isScrolled ? 1 : 2 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="font-bold text-5xl transition-all"
+            >
+                Khu Mo Distillery
+            </motion.div>
+        </header>
     );
-}
+};
+
+export default Header;

@@ -1,7 +1,9 @@
-export function Footer() {
+const Footer = () => {
     return (
-        <footer className="w-full py-4 bg-gray-900 text-white text-center">
-            <p>&copy; {new Date().getFullYear()} Khu Mo Distillery. All rights reserved.</p>
+        <footer className="bg-black text-white p-8 text-center">
+            <p>&copy; 2025 Khu Mo Distillery. All rights reserved.</p>
         </footer>
     );
-}
+};
+
+export default Footer;
