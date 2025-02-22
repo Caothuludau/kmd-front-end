@@ -2,18 +2,10 @@ import { notFound } from "next/navigation";
 import wines from "@/data/wines"; // Mock data
 import Image from "next/image";
 import Button from "@/components/Button";
-import { GetServerSideProps } from "next";
 
 interface WineDetailProps {
     params: { id: string };
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { id } = context.params;
-    return {
-        props: { params: { id } },
-    };
-};
 
 export default function WineDetail({ params }: WineDetailProps) {
     const wine = wines.find((w) => w.id.toString() === params.id);
