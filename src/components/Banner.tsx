@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
+import Image from "next/image";
 
 const Banner = () => {
     const images = [
@@ -17,8 +18,10 @@ const Banner = () => {
         <Swiper navigation={true} modules={[Navigation]} className="w-full">
             {images.map((src, index) => (
                 <SwiperSlide key={index}>
-                    <img
+                    <Image
                         src={src}
+                        width={500}
+                        height={288} 
                         alt={`Banner ${index + 1}`}
                         className="w-full h-auto object-cover"
                     />

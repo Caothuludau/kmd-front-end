@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface CardProps {
     title: string;
@@ -11,7 +12,12 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ title, description, image, price }) => {
     return (
         <div className="bg-white shadow-md rounded-xl p-4">
-            <img src={image} alt={title} className="w-full h-48 object-cover rounded-md" />
+            <Image 
+                src={image}
+                alt={title}
+                width={500}
+                height={288} 
+                className="w-full h-48 object-cover rounded-md" />
             <h3 className="text-lg font-bold mt-2">{title}</h3>
             <p className="text-gray-600 text-sm">{description}</p>
             <div className="flex justify-between items-center mt-3">
