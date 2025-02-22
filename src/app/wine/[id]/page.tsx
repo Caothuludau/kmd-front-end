@@ -4,11 +4,6 @@ import Image from "next/image";
 import Button from "@/components/Button";
 import { Metadata } from "next";
 
-// Define the expected type for params
-type PageProps = {
-    params: { id: string };
-};
-
 // Generate static paths for dynamic routes
 export async function generateStaticParams() {
     return wines.map((wine) => ({
@@ -17,7 +12,7 @@ export async function generateStaticParams() {
 }
 
 // (Optional) Metadata for SEO
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Record<string, string> }): Promise<Metadata> {
     const wine = wines.find((w) => w.id.toString() === params.id);
     if (!wine) return {};
     return {
@@ -26,7 +21,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
-export default function WineDetail({ params }: PageProps) {
+// Page component
+export default function WineDetail({ params }: { params: Record<string, string> }) {
     const wine = wines.find((w) => w.id.toString() === params.id);
 
     if (!wine) return notFound();
