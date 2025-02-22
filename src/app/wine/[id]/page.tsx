@@ -7,6 +7,12 @@ interface WineDetailProps {
     params: { id: string };
 }
 
+export async function generateStaticParams() {
+    return wines.map((wine) => ({
+        id: wine.id.toString(),
+    }));
+}
+
 export default function WineDetail({ params }: WineDetailProps) {
     const wine = wines.find((w) => w.id.toString() === params.id);
 
