@@ -26,7 +26,7 @@ const Header = () => {
             <nav className="flex space-x-6 text-lg">
                 <Link href="/contact">+ Contact</Link>
                 <Link href="/">Home</Link>
-                <Link href="/wine-categories">Wine Categories</Link>
+                <Link href="/wine">Wine Categories</Link>
                 <Link href="/about">About Khu Mo Wine</Link>
             </nav>
 

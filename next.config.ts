@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'scontent.fhan14-4.fna.fbcdn.net',
       },
+      {
+        protocol: 'https',
+        hostname: 'tropicalwine.com.vn',
+      },
     ],
   },
 };
