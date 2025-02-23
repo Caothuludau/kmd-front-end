@@ -2,11 +2,8 @@ import { notFound } from "next/navigation";
 import wines from "@/data/wines"; // Mock data
 import Image from "next/image";
 import Button from "@/components/Button";
-import { Metadata } from "next";
 
-interface WineDetailProps {
-    params: { id: string };
-}
+type Params = Promise<{ id: string }>;
 
 // Generate static paths for dynamic routes
 export async function generateStaticParams() {
@@ -16,8 +13,10 @@ export async function generateStaticParams() {
 }
 
 // (Optional) Metadata for SEO
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-    const wine = wines.find((w) => w.id.toString() === params.id);
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    const wine = wines.find((w) => w.id.toString() === id);
+
     if (!wine) return {};
     return {
         title: wine.title,
@@ -26,8 +25,9 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 // Page component
-export default function WineDetail({ params }: WineDetailProps) {
-    const wine = wines.find((w) => w.id.toString() === params.id);
+export default async function WineDetail({ params }: { params: Params }) {
+    const { id } = await params;
+    const wine = wines.find((w) => w.id.toString() === id);
 
     if (!wine) return notFound();
 
